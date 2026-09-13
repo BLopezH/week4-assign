@@ -14,6 +14,14 @@ int main(int argc, char *argv[]){
     char buffer[256];
     int length;
 
+    FILE *file = fopen("input.txt", "r'");
+    if(file == NULL){
+        return 1;
+    }
+
+    //for file change 'stdin' to 'file'
+    //example below
+    //while(count < SIZE && fgets(buffer, sizeof(buffer), file) != NULL)
     while(count < SIZE && fgets(buffer, sizeof(buffer), stdin) != NULL){
         buffer[strcspn(buffer, "\n")] = '\0';
 
@@ -31,6 +39,8 @@ int main(int argc, char *argv[]){
         free(arrayStr[i]);
     }
 
+    fclose(file);
+
     return 0;
 }
 
@@ -43,7 +53,7 @@ char *newString(char *str, int size){
     }
 
     strcpy(heap, str);
-    
+
     return heap;
 }
 
